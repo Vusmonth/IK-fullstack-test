@@ -1,11 +1,13 @@
 const mysql = require('mysql');
 require('dotenv').config()
 
+// mysql://ba91d16472ca32:62c390bf@us-cdbr-east-06.cleardb.net/heroku_6203d4477bec9ed?reconnect=true
+
 module.exports = con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: "mydb"
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 con.connect(function (err) {
@@ -13,7 +15,7 @@ con.connect(function (err) {
     console.log("Connected!");
     
     //Cria nova base de dados caso não exista assim que o servidor é iniciado
-    con.query("CREATE DATABASE IF NOT EXISTS mydb", function (err, result) {
+    con.query("CREATE DATABASE IF NOT EXISTS heroku_6203d4477bec9ed", function (err, result) {
         if (err) throw err;
         console.log("Database created");
     });
