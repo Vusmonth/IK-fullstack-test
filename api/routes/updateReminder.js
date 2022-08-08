@@ -17,7 +17,9 @@ module.exports = app => {
           ]
 
         con.query(sql, value, function (err, result) {
-          if (err) throw err;
+          if (err){
+            res.status(500).send(err)
+          }
           console.log("Reminder updated");
           res.status(200).send("Reminder updated")
         });

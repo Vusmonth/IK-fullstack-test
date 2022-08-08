@@ -13,7 +13,9 @@ module.exports = app => {
         const value = [[reminder.name, reminder.title, reminder.datetime]]
 
         con.query(sql, [value], function (err, result) {
-          if (err) throw err;
+          if (err){
+            res.status(500).send(err)
+          }
           console.log("1 reminder inserted");
           res.status(201).send("Reminder inserted")
         });

@@ -12,7 +12,9 @@ module.exports = app => {
         const sql = "DELETE FROM reminders WHERE id=?";
 
         con.query(sql, id, function (err, result) {
-          if (err) throw err;
+          if (err){
+            res.status(500).send(err)
+          }
           console.log("Reminder deleted");
           res.status(200).send("Reminder deleted")
         });
