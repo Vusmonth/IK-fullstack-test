@@ -1,0 +1,22 @@
+.App-header {
+    width: 100vw;
+    flex: 0.1;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #9994;
+}
+
+img{
+    width: 12vw;
+    margin-left: 20px;
+}
+
+input {
+    background-color: #f1f3f4;
+    height: 45px;
+    width: 30%;
+    border-radius: 8px;
+    border: none;
+    padding: 0px 15px 0px 15px;
+}
