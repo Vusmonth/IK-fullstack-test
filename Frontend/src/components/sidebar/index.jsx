@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import './style.css';
 
-export default function Sidebar() {
+export default function Sidebar({createReminder}) {
 
   const [URLhash, setURLhash] = useState('')
 
@@ -13,7 +13,7 @@ export default function Sidebar() {
   return (
     <div className="Side-menu">
 
-      <button>
+      <button onClick={() => createReminder()}>
         Criar um lembrete
       </button>
 

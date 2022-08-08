@@ -9,16 +9,8 @@ import axios from 'axios'
 
 function App() {
 
-  const teste = [
-    { title: 'a', name: 'a', date: 'a' },
-    { title: 'b', name: 'a', date: 'a' },
-    { title: 'c', name: 'a', date: 'a' },
-    { title: 'd', name: 'a', date: 'a' },
-    { title: 'e', name: 'a', date: 'a' },
-    { title: 'f', name: 'a', date: 'a' },
-  ]
-
   const [reminderList, setReminderList] = useState([])
+  const [createActive, setcreateActive] = useState([])
 
   const RenderList = () => {
 
@@ -38,20 +30,34 @@ function App() {
 
   }, [])
 
+  const SubmitData = async (data) => {
+    setcreateActive(false)
+    axios.post('https://ik-solution-api.herokuapp.com/new-reminder', {
+      data
+    })
+      .then(resp => {
+        setReminderList(resp.data)
+      });
+  }
+
 
   return (
     <div className="App">
 
       <Header />
-      <CreateReminder />
+      <CreateReminder
+        active={createActive}
+        onCancel={() => setcreateActive(false)}
+        onSubmit={(e) => SubmitData(e)}
+      />
 
       <div className='Content-div'>
-        <Sidebar />
+        <Sidebar createReminder={() => setcreateActive(true)} />
+
         <div className='Reminder-list'>
-
           <RenderList />
-
         </div>
+
       </div>
 
     </div>
