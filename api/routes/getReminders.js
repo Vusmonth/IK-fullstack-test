@@ -10,7 +10,7 @@ module.exports = app => {
 
       if(id != undefined){
         //caso a rota tenha o parametro id, retorna o lembrete correspondente ao mesmo
-        con.query("SELECT * FROM reminders WHERE id = ?", [id], function (err, result) {
+        db.query("SELECT * FROM reminders WHERE id = ?", [id], function (err, result) {
           if (err){
             res.status(500).send(err)
           }
@@ -19,7 +19,7 @@ module.exports = app => {
       }
       else{
         //caso não tenha um id, retorna todos os lembretes
-        con.query("SELECT * FROM reminders", function (err, result) {
+        db.query("SELECT * FROM reminders", function (err, result) {
           if (err){
             res.status(500).send(err)
           }

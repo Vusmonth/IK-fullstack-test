@@ -12,7 +12,7 @@ module.exports = app => {
         const sql = "INSERT INTO reminders (name, title, datetime) VALUES ?";
         const value = [[reminder.name, reminder.title, reminder.datetime]]
 
-        con.query(sql, [value], function (err, result) {
+        db.query(sql, [value], function (err, result) {
           if (err){
             res.status(500).send(err)
           }

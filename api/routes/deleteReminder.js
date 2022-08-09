@@ -11,7 +11,7 @@ module.exports = app => {
         const id = req.body.id
         const sql = "DELETE FROM reminders WHERE id=?";
 
-        con.query(sql, id, function (err, result) {
+        db.query(sql, id, function (err, result) {
           if (err){
             res.status(500).send(err)
           }
