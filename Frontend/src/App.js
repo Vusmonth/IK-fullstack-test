@@ -10,34 +10,32 @@ import axios from 'axios'
 function App() {
 
   const [reminderList, setReminderList] = useState([])
-  const [createActive, setcreateActive] = useState([])
+  const [createActive, setcreateActive] = useState(false)
+
+  const [editingReminder, setEditingReminder] = useState({})
 
   const RenderList = () => {
 
     return (
       reminderList.map((item, i) =>
-        <Reminder Title={item.title} Name={item.name} Date={item.date} />
+        <Reminder onClick={() => { setEditingReminder(item); setcreateActive(true) }} Title={item.title} Name={item.name} Date={item.datetime} />
       )
     )
-
   }
 
   useEffect(() => {
-
-    axios.get('https://ik-solution-api.herokuapp.com/reminders').then(resp => {
-      setReminderList(resp.data)
-    });
-
+    FetchData()
   }, [])
 
-  const SubmitData = async (data) => {
+  const SubmitData = async () => {
     setcreateActive(false)
-    axios.post('https://ik-solution-api.herokuapp.com/new-reminder', {
-      data
-    })
-      .then(resp => {
-        setReminderList(resp.data)
-      });
+    FetchData()
+  }
+
+  const FetchData = async () => {
+    axios.get('https://ik-solution-api.herokuapp.com/reminders').then(resp => {
+      setReminderList((resp.data).reverse())
+    });
   }
 
 
@@ -48,14 +46,17 @@ function App() {
       <CreateReminder
         active={createActive}
         onCancel={() => setcreateActive(false)}
-        onSubmit={(e) => SubmitData(e)}
+        onSubmit={() => SubmitData()}
+        onCatch={(err) => alert(err)}
+        editObject={editingReminder}
       />
 
       <div className='Content-div'>
-        <Sidebar createReminder={() => setcreateActive(true)} />
+        <Sidebar createReminder={() => {setcreateActive(true); setEditingReminder({})}} />
 
         <div className='Reminder-list'>
-          <RenderList />
+          {reminderList.length == 0 ? <h4>Nenhum lembrete definido</h4> : <RenderList />}
+          
         </div>
 
       </div>

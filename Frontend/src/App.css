@@ -9,17 +9,29 @@
 .Content-div {
   flex: 1;
   display: flex;
+
+}
+
+@media (max-width: 560px){
+
+  .Content-div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .Reminder-list {
   padding-left: 2%;
   padding-top: 2%;
   width: 100%;
+  max-height: 85vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
   row-gap: 15px;
+  overflow-y: scroll;
 }
 

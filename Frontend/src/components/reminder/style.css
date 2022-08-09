@@ -1,6 +1,6 @@
 .reminder {
     border: 1px #d4d4d4 solid;
-    width: 21%;
+    flex-basis: 24vw;
     height: fit-content;
     padding: 10px 1% 10px 1%;
     margin: 0px 10px 0px 0px;
@@ -44,4 +44,20 @@ p {
 
 strong{
     margin-bottom: 5px;
+}
+
+@media (max-width: 560px){
+    .reminder {
+        border: 1px #d4d4d4 solid;
+        flex-basis: 44vw;
+        height: fit-content;
+        padding: 10px 1% 10px 1%;
+        margin: 0px 10px 0px 0px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        border-radius: 6px;
+    }
 }
