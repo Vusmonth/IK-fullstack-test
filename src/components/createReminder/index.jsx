@@ -86,10 +86,10 @@ export default function CreateReminder({ active, onCancel, onSubmit, onCatch, ed
 
   const DeleteReminder = async () => {
     axios.delete('https://ik-solution-api.herokuapp.com/delete-reminder', {
-      data: {id: 154} 
+      data: {id: editObject.id} 
     })
       .then(resp => {
-        console.log(resp.data)
+        console.log(resp)
         onSubmit()
       })
       .catch(err => {
